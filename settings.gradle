@@ -1,0 +1,4 @@
+include ':base'
+rootProject.name = "Sip"
+include ':linphonesample'
+include ':linphoneSdk'

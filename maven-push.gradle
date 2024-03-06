@@ -1,0 +1,110 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+Properties properties = new Properties()
+InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream();
+properties.load(inputStream)
+//上传groupId名称
+def MAVEN_GROUPID = 'cn.feige'
+//maven私服用户名
+def MAVEN_USERNAME = properties.getProperty('ossrhUsername')
+//maven私服密码
+def MAVEN_PASSWORD = properties.getProperty('ossrhPassword')
+
+ext {
+    isPublishSnapshot = SDK_ATEST.toBoolean()
+}
+
+def MAVEN_URL = isPublishSnapshot ? SNAPSHOT_REPOSITORY_URL : RELEASE_REPOSITORY_URL
+publishing {
+    publications {
+        release(MavenPublication) {
+            pom {
+                name = 'sip sdk'
+                description = 'sip sdk'
+                url = 'https://github.com/ChenGuoqing1001/feigeSip'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = 'cc'
+                        email = 'pkuchenguoqing@vip.qq.com'
+                    }
+                }
+
+                scm {
+                    connection = 'https://github.com/ChenGuoqing1001/feigeSip.git'
+                    developerConnection = 'https://github.com/ChenGuoqing1001/feigeSip.git'
+                    url = 'https://github.com/ChenGuoqing1001/feigeSip'
+                }
+
+            }
+
+            groupId MAVEN_GROUPID
+            afterEvaluate {
+                def aar = isPublishSnapshot ? "bundleAtestReleaseAar" : "bundleProductReleaseAar"
+                artifact(tasks.getByName(aar))
+            }
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                    if (dp.version != "unspecified") {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', dp.group)
+                        dependencyNode.appendNode('artifactId', dp.name)
+                        dependencyNode.appendNode('version', dp.version)
+
+                        if (dp.excludeRules.size() > 0) {
+                            def exclusions = dependencyNode.appendNode('exclusions')
+                            dp.excludeRules.each { ExcludeRule ex ->
+                                def exclusion = exclusions.appendNode('exclusion')
+                                exclusion.appendNode('groupId', ex.group)
+                                exclusion.appendNode('artifactId', ex.module)
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    repositories {
+        //加载资源
+        maven {
+            url MAVEN_URL
+            credentials {
+                username MAVEN_USERNAME
+                // ossrhUsername is your sonatype username
+                password MAVEN_PASSWORD
+                // ossrhUsername is your sonatype password
+            }
+        }
+    }
+}
+task cleanBuildPublishLocal(type: GradleBuild) {
+    tasks = ['clean', 'publishToMavenLocal']
+}
+
+task cleanBuildPublishToMavenRepository(type: GradleBuild) {
+    tasks = ['clean', 'publishReleasePublicationToMavenRepository']
+}
+signing {
+    sign publishing.publications.release
+}
+
+/*
+task publishToMaven(dependsOn: ['assemble', 'publish']) {
+    doLast {
+        println "finish publish to maven"
+    }
+}
+
+
+publishToMaven.setGroup('upload')
+*/
+

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/call_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#9a000000"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="100dp">
+
+            <!--            app:x_pattern="3,4,4"-->
+
+            <TextView
+                android:id="@+id/textViewCallState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:text="正在拨号."
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_out_call_info"
+                android:textSize="@dimen/sp_18"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_10"/>
+            <LinearLayout
+                android:id="@+id/keybord_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        style="@style/call_keyboard_layout2"
+                        app:justifyContent="space_evenly">
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv1"
+                            style="@style/call_keyboard_tv2"
+                            android:text="1" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv2"
+                            style="@style/call_keyboard_tv2"
+                            android:text="2" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv3"
+                            style="@style/call_keyboard_tv2"
+                            android:text="3" />
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        style="@style/call_keyboard_layout2"
+                        app:justifyContent="space_evenly">
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv4"
+                            style="@style/call_keyboard_tv2"
+                            android:text="4" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv5"
+                            style="@style/call_keyboard_tv2"
+                            android:text="5" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv6"
+                            style="@style/call_keyboard_tv2"
+                            android:text="6" />
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        style="@style/call_keyboard_layout2"
+                        app:justifyContent="space_evenly">
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv7"
+                            style="@style/call_keyboard_tv2"
+                            android:text="7" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv8"
+                            style="@style/call_keyboard_tv2"
+                            android:text="8" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv9"
+                            style="@style/call_keyboard_tv2"
+                            android:text="9" />
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        style="@style/call_keyboard_layout2"
+                        app:justifyContent="space_evenly">
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv_xing"
+                            style="@style/call_keyboard_tv2"
+                            android:text="*" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv0"
+                            style="@style/call_keyboard_tv2"
+                            android:text="0" />
+
+                        <TextView
+                            android:id="@+id/call_keyboard_number_tv_jin"
+                            style="@style/call_keyboard_tv2"
+                            android:text="#" />
+                    </com.google.android.flexbox.FlexboxLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/btnMuteMic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerInside"
+                                android:src="@mipmap/call_mute_normal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="静音"
+                                android:textColor="#ffffffff"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/keybord_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/btn_keybord"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerInside"
+                                android:src="@mipmap/call_keyboard" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="拨号键盘"
+                                android:textColor="#ffffffff"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/btnMianti"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerInside"
+                                android:src="@mipmap/call_mianti_normal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="免提"
+                                android:textColor="#ffffffff"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/layoutIncomingCall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/buttonHangup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/call_in_termi"
+                        android:text="拒绝" />
+
+                    <ImageView
+                        android:id="@+id/buttonAccept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:src="@mipmap/call_in_accept"
+                        android:text="接听" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutConnected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/btnHangUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:src="@mipmap/hangup"
+                        android:text="挂断" />
+
+                    <TextView
+                        android:id="@+id/hide_keyboard_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="隐藏"
+                        android:textColor="#ffffffff"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+</layout>
